@@ -35,7 +35,7 @@ RUN ./mvnw dependency:go-offline
 COPY src ./src
 RUN ./mvnw clean install
 
-FROM eclipse-temurin:17-jdk-jammy as build
+FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /opt/app
 EXPOSE 8080
 COPY --from=build /opt/app/target/*.jar /opt/app/*.jar
