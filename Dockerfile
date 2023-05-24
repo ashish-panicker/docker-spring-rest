@@ -23,7 +23,7 @@
 # -----------------------------------------#
 
 
-# Dockerfile using multi layered buil of Spring boot project
+# Dockerfile using multi layered build of Spring boot project
 # -----------------------------------------#
 FROM eclipse-temurin:17-jdk-jammy as build
 WORKDIR /opt/app
@@ -37,6 +37,7 @@ RUN ./mvnw clean install
 
 FROM eclipse-temurin:17-jdk-jammy
 WORKDIR /opt/app
+# Exposes the port 8080 in the container
 EXPOSE 8080
 COPY --from=build /opt/app/target/*.jar /opt/app/*.jar
 ENTRYPOINT ["java", "-jar", "/opt/app/*.jar" ]
